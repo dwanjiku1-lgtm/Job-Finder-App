@@ -4,14 +4,15 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>JobFinder</title>
-        <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="styles.css" />
     </head>
     <body>
         <header class="hero">
             <h1>Job<span>Finder</span></h1>
-            <p>Search real jobs listing from around the world.</p>
-            <form id="searchForm" class="search">
+            <p>Search real job listing from around the world.</p>
+            <form id="search-form" class="search">
                 <input id="queryInput" type="text" placeholder="e.g. developer in Nairobi" required />
+                <input id="country" type="text" placeholder="Country code, e.g. ke" maxlength="2" />
                 <button type="submit">Search</button>
             </form>
 
@@ -22,11 +23,11 @@
                     <option value="">All job type</option>
                     <option value="full">Full-time</option>
                     <option value="part">Part-time</option>
-                    <option value="contract">contract</option>
+                    <option value="contract">Contract</option>
                     <option value="intern">Internship</option>
                 </select>
 
-                <select id="sortSelect" arial-label="Sort by">
+                <select id="sortSelect" aria-label="Sort by">
                     <option value="newest">Newest first</option>
                     <option value="oldest">Oldest-first</option>
                     <option value="company">Company A-Z</option>
@@ -36,7 +37,7 @@
                     <input type="checkbox" id="remoteOnly" /> Remote only
                 </label>
 
-                <input id="filterInput" type="text" placeholder="Filter resulsts by keyword.."/>
+                <input id="filterInput" type="text" placeholder="Filter results by keyword.."/>
             </section>
             <p id="status" class="status"></p>
             <section id="results" class="grid"></section>

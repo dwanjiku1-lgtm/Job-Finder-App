@@ -33,8 +33,8 @@ app.get('/api/jobs', async (req, res) => {
     }
     try {
       const url =
-        'https://jsearch.p.rapidapi.com/search-v2?query=' + encodeURLComponent(query) + 
-        '&country=' + encodeURLComponent(country) +
+        'https://jsearch.p.rapidapi.com/search-v2?query=' + encodeURIComponent(query) + 
+        '&country=' + encodeURIComponent(country) +
         '&num_pages=1&date_posted=all';
        console.log('NEW CODE v3 - Requesting URL:', url);
 
@@ -82,4 +82,8 @@ app.get('/api/jobs', async (req, res) => {
             servedBy: HOSTNAME,
         });
     }
+});
+
+app.listen(PORT, () => {
+    console.log(`server running at http://localhost:${PORT}`);
 });
