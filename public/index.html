@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>JobFinder</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <header class="hero">
+            <h1>Job<span>Finder</span></h1>
+            <p>Search real jobs listing from around the world.</p>
+            <form id="searchForm" class="search">
+                <input id="queryInput" type="text" placeholder="e.g. developer in Nairobi" required />
+                <button type="submit">Search</button>
+            </form>
+
+        </header>
+        <main>
+            <section class="controls">
+                <select id="typefilter" aria-label="Job type">
+                    <option value="">All job type</option>
+                    <option value="full">Full-time</option>
+                    <option value="part">Part-time</option>
+                    <option value="contract">contract</option>
+                    <option value="intern">Internship</option>
+                </select>
+
+                <select id="sortSelect" arial-label="Sort by">
+                    <option value="newest">Newest first</option>
+                    <option value="oldest">Oldest-first</option>
+                    <option value="company">Company A-Z</option>
+                </select>
+
+                <label class="check">
+                    <input type="checkbox" id="remoteOnly" /> Remote only
+                </label>
+
+                <input id="filterInput" type="text" placeholder="Filter resulsts by keyword.."/>
+            </section>
+            <p id="status" class="status"></p>
+            <section id="results" class="grid"></section>
+        </main>
+
+        <footer>
+            Data from <a href="https://rapidapi.com/letscrape-6bRBa3QguO5/api/jsearch" target="_blank" rel="noopener">JSearch API</a> by Letscrape via RapidAPI.
+        </footer>
+        <script src="app.js"></script>
+    </body>
+</html>
