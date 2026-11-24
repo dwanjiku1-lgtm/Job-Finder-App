@@ -1,0 +1,146 @@
+body {
+    font-family: system-ui, sans-serif;
+    max-width: 960px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    background: #f6efe4;
+    color: light #3b2a1e;
+
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #4a2e1b;
+}
+.server-label {
+    font-size: 0.85rem;
+    color: #7a6552;
+}
+.bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    background: #fffaf1;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    border: 1px solid #e4d5db;
+}
+
+input,
+select,
+button {
+    padding: 0.55rem 0.75rem;
+    border: 1px solid #d8c5a8;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    background: #fffdf8;
+    color: #3b2a1e;
+}
+
+input:focus,
+select:focus {
+    outline: 2px solid #c9a27a;
+    outline-offset: 1px;
+}
+
+input {
+    flex: 1 1 200px;
+}
+
+.country-input {
+    width: 65px;
+    flex: 0 0 65px;
+    text-transform: uppercase;
+}
+
+button {
+    background: #8b5a2b;
+    color: #fffaf1;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+
+}
+
+button:hover {
+    background: #6f4520;
+}
+
+.msg {
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    display: none;
+}
+
+.msg.error {
+    display: block;
+    background: #f5ddd3;
+    color: #8a2f1a;
+}
+
+.msg.info {
+    display:block;
+    background: #efe0c8;
+    color: #6f4520;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+}
+.card {
+    background: #fffaf1;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid #e4d5bd;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.card h3 {
+    margin: 0;
+    font-size: 1.05rem;
+    color: #3b2a1e;
+}
+
+.employer {
+    color: #8b5a2b;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.meta {
+    font-size: 0.82rem;
+    color: #7a6552;
+}
+
+.summary {
+    font-size: 0.9rem;
+    color: #5a4535;
+}
+
+.card a {
+    margin-top: auto;
+    align-self: flex-start;
+    text-decoration: none;
+    background: #4a2e1b;
+    color: #fffaf1;
+    padding: 0.4rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+}
+
+.card a:hover {
+    background: #6f4520;
+}
