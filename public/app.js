@@ -1,21 +1,23 @@
 
 let allJobs = [];
-const msgEl = document.getElementById('msg');
-const gridEl = document.getElementById('grid');
+const msgEl = document.getElementById('status');
+const gridEl = document.getElementById('results');
 
 function setMsg(text, type = '') {
     msgEl.textContent = text;
-    msgEl.className = type ? `msg ${type}` : 'msg';
+    msgEl.className = type ? `msg ${type}` : 'status';
 }
 
 function render() {
-    const term = document.getElementById('filter').value.trim().toLowerCase();
-    const remoteOnly = document.getElementById('remote-filter').value === 'remote';
-    const sortBy = document.getElementById('sort').value;
+    const term = document.getElementById('filterInput').value.trim().toLowerCase();
+    const remoteOnly = document.getElementById('remoteOnly').checked;
+    const sortBy = document.getElementById('sortSelect').value;
+    const type = document.getElementById('typefilter').value;
 
     const list = allJobs
         .filter((j) => {
             if (remoteOnly && !j.isRemote) return false;
+            if (type && !(j.employmentType || '').toLowerCase().includes(type)) return false;
             if (!term) return true;
             return (
                 j.title.toLowerCase().includes(term) ||
@@ -24,14 +26,14 @@ function render() {
             );
         })
         .sort((a, b) => {
-            if (sortBy === 'title') return a.title.localeCompare(b.tittle);
+            if (sortBy === 'oldest') return (Date.parse(a.postedAt) || 0) - (Date.parse(b.postedAt) || 0);
             if (sortBy === 'company') return a.employer.localeCompare(b.employer);
             if (sortBy === 'newest') return (Date.parse(b.postedAt) || 0) - (Date.parse(a.postedAt) || 0);
             return 0;
         });
 gridEl.innerHTML = '';
 if (!list.length) {
-    gridEl.innerHTML = '<P>No jobs match your current view.</p>';
+    gridEl.innerHTML = '<p>No jobs match your current view.</p>';
     return;
 }  
 
@@ -43,7 +45,7 @@ for (const job of list) {
     <h3>${escapeHtml(job.title)}</h3>
     <div class="employer">${escapeHtml(job.employer)}</div>
     <div class="meta">${escapeHtml(job.location)} . ${escapeHtml(dateStr)}</div>
-    <p class"summary">${escapeHtml(job.summary)}</p>
+    <p class="summary">${escapeHtml(job.summary)}</p>
     ${job.applyLink ? `<a href="${escapeAttr(job.applyLink)}" target="_blank" rel="noopener noreferrer">Apply</a>` : ''}`;
     gridEl.appendChild(card);
 }
@@ -66,12 +68,12 @@ function escapeAttr(url) {
 
 document.getElementById('search-form').addEventListener('submit', async (e) => {
     e.preventDefault();
-    const query = document.getElementById('query').value.trim();
+    const query = document.getElementById('queryInput').value.trim();
     const country = document.getElementById('country').value.trim() || 'us' ;
     setMsg('Searching Jsearch ...', 'info');
 
     try {
-        const res = await fetch('/api/jobs?query=' + encodeURLComponent(query) + '&country=' + encodeURLComponent(country));
+        const res = await fetch('/api/jobs?query=' + encodeURIComponent(query) + '&country=' + encodeURIComponent(country));
         const data = await res.json();
         if (data.servedBy) {
             document.getElementById('server-label').textContent = `served by: ${data.servedBy}`;
@@ -99,7 +101,7 @@ document.getElementById('search-form').addEventListener('submit', async (e) => {
     }
 });
 
-['filter', 'remote-filter', 'sort'].forEach((id) => {
+['filterInput', 'remoteOnly', 'sortSelect', 'typefilter'].forEach((id) => {
     document.getElementById(id).addEventListener('input', render);
     document.getElementById(id).addEventListener('change', render);
 });

@@ -2,7 +2,7 @@ require('dotenv').config();
 const path = require('path');
 const os = require('os');
 const express = require('express');
-const { truncate } = require('fs');
+
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -68,6 +68,7 @@ app.get('/api/jobs', async (req, res) => {
            ? 'Remote'
            : [item.job_city, item.job_country].filter(Boolean).join(', ') || 'Location unspecified',
         isRemote: Boolean(item.job_is_remote),
+        employmentType: item.job_employment_type || '',
         postedAt: item.job_posted_at_datetime_utc || '',
         applyLink: item.job_apply_link || '',
         summary: (item.job_description || 'No description available.').slice(0, 200) + '...',   
