@@ -7,7 +7,7 @@ A simple web app for searching job listings from around the world.
 **GitHub repository:** https://github.com/dwanjiku1-lgtm/Job-Finder-App
 
 ## Demo Video
-https://drive.google.com/file/d/1D_LLLx_57xC-imEQsa-hfdrtYTC4eay9/view?usp=drive_link
+https://drive.google.com/file/d/1D_LLLx_57xC-imEQsa-hfdrtYTC4eay9/view?usp=sharing
 
 
 ## Features
